@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 public class BatchProcessing
 {
@@ -19,20 +20,21 @@ public class BatchProcessing
         try
         {
             Class.forName(DB_DRIVER);
-            conn.setAutoCommit(false);
             conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
             stmt=conn.createStatement();
+            conn.setAutoCommit(false);
 
-            stmt.addBatch("Insert into employee values (104,'DDD',38.3)");
-            stmt.addBatch("Insert into employee values (105,'EEE',78.3)");
-            stmt.addBatch("Insert into employee values (106,'FFF',40.3)");
+            stmt.addBatch("Insert into student values (108,'DDD',38.3)");
+            stmt.addBatch("Insert into student values (109,'EEE',78.3)");
+            stmt.addBatch("Insert into student values (110,'FFF',40.3)");
 
-            stmt.executeBatch();
+            int sval[]=stmt.executeBatch();
+            System.out.println("Status : "+Arrays.toString(sval));
 
             conn.commit();
             stmt.close();
             conn.close();
-
+            System.out.println("Operation is Successfully...!");
         }
         catch (Exception e)
         {

@@ -39,7 +39,7 @@ public class NRecords
                 pstmt.setString(2, name);
                 pstmt.setFloat(3, percent);
 
-                pstmt.addBatch();
+                pstmt.addBatch(); //Addding SQL into the batch
 
                 System.out.println("Do You Want To Add New Record");
                 String option=br.readLine();
