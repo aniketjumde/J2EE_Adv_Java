@@ -136,7 +136,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Ass04-Login-Page" path="/Ass04-Login-Page" reloadable="true" source="org.eclipse.jst.jee.server:Ass04-Login-Page"/><Context docBase="ASS02-Greed-App" path="/ASS02-Greed-App" reloadable="true" source="org.eclipse.jst.jee.server:ASS02-Greed-App"/><Context docBase="Ass03-Sum-App" path="/Ass03-Sum-App" reloadable="true" source="org.eclipse.jst.jee.server:Ass03-Sum-App"/><Context docBase="Ass05-Cookie-app" path="/Ass05-Cookie-app" reloadable="true" source="org.eclipse.jst.jee.server:Ass05-Cookie-app"/></Host>
+      <Context docBase="Ass04-Login-Page" path="/Ass04-Login-Page" reloadable="true" source="org.eclipse.jst.jee.server:Ass04-Login-Page"/><Context docBase="ASS02-Greed-App" path="/ASS02-Greed-App" reloadable="true" source="org.eclipse.jst.jee.server:ASS02-Greed-App"/><Context docBase="Ass03-Sum-App" path="/Ass03-Sum-App" reloadable="true" source="org.eclipse.jst.jee.server:Ass03-Sum-App"/><Context docBase="Ass05-Cookie-app" path="/Ass05-Cookie-app" reloadable="true" source="org.eclipse.jst.jee.server:Ass05-Cookie-app"/><Context docBase="Ass06-Shoping-card-Using-Seesion" path="/Ass06-Shoping-card-Using-Seesion" reloadable="true" source="org.eclipse.jst.jee.server:Ass06-Shoping-card-Using-Seesion"/></Host>
     </Engine>
   </Service>
 </Server>
