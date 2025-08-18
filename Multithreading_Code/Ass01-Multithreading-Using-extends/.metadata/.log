@@ -1,0 +1,26 @@
+!SESSION 2025-08-12 01:01:28.300 -----------------------------------------------
+eclipse.buildId=4.36.0.20250605-1300
+java.version=21.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product -data /home/aniket/Documents/Programming_Languages/J2EE_Adv_Java/Multithreading_Code/Ass01-Multithreading-Using-extends
+
+!ENTRY ch.qos.logback.classic 1 0 2025-08-12 01:01:30.131
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-08-12 01:01:31.137
+!MESSAGE Logback config file: /home/aniket/Documents/Programming_Languages/J2EE_Adv_Java/Multithreading_Code/Ass01-Multithreading-Using-extends/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml
+!SESSION 2025-08-13 09:30:12.707 -----------------------------------------------
+eclipse.buildId=4.36.0.20250605-1300
+java.version=21.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product -data /home/aniket/Documents/Programming_Languages/J2EE_Adv_Java/Multithreading_Code/Ass01-Multithreading-Using-extends
+
+!ENTRY ch.qos.logback.classic 1 0 2025-08-13 09:30:14.475
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-08-13 09:30:15.485
+!MESSAGE Logback config file: /home/aniket/Documents/Programming_Languages/J2EE_Adv_Java/Multithreading_Code/Ass01-Multithreading-Using-extends/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml
