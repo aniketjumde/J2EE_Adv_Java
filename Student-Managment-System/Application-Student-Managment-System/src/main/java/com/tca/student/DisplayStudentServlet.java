@@ -54,7 +54,7 @@ public class DisplayStudentServlet extends HttpServlet {
 		{
 			try
 			{
-				int rno=Integer.parseInt(search);
+				int rno=Integer.parseInt(search);			//Check Rno Other wise go to Catch
 				query="SELECT * FROM student WHERE rno = ?";
 			}
 			catch(NumberFormatException ne)
@@ -62,7 +62,7 @@ public class DisplayStudentServlet extends HttpServlet {
 				
 				try
 				{
-					double per=Double.parseDouble(search);
+					double per=Double.parseDouble(search);	//Check Per Other wise go to Catch
 					query="SELECT * FROM student WHERE per = ?";
 				
 				}
