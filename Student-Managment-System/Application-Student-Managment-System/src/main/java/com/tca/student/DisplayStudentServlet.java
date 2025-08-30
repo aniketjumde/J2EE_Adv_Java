@@ -59,7 +59,17 @@ public class DisplayStudentServlet extends HttpServlet {
 			}
 			catch(NumberFormatException ne)
 			{
-				query="SELECT * FROM student WHERE name LIKE ?";
+				
+				try
+				{
+					double per=Double.parseDouble(search);
+					query="SELECT * FROM student WHERE per = ?";
+				
+				}
+				catch(NumberFormatException ne2)
+				{
+					query="SELECT * FROM student WHERE name LIKE ?";
+				}
 			}
 			catch(Exception e)
 			{
@@ -78,6 +88,10 @@ public class DisplayStudentServlet extends HttpServlet {
 			{
 			    ps.setInt(1, Integer.parseInt(search));
 			   
+			}
+			else if(query.contains("WHERE per = ?"))
+			{
+				ps.setDouble(1,Double.parseDouble(search));
 			}
 			else if(query.contains("WHERE name LIKE ?"))
 			{
@@ -139,20 +153,18 @@ public class DisplayStudentServlet extends HttpServlet {
 		}
 		
 		finally {
-		    try {
-		        if (rs != null) {
-		            rs.close();  // Close the ResultSet if it was opened
-		        }
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    }
-		    try {
-		        if (con != null) {
-		            con.close();  // Close the Connection if it was opened
-		        }
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    }
+		   try {
+			rs.close();
+		   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   }
+		   try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		
 	}
