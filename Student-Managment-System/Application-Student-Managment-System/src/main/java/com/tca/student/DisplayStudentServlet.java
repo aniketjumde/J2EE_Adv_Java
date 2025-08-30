@@ -40,14 +40,52 @@ public class DisplayStudentServlet extends HttpServlet {
 		final String DB_USER="root";
 		final String DB_PASSWORD="root@123";
 		
-		String query="SELECT * FROM Student Order by rno ";
+		String query="";
+		
+		String sbtn=request.getParameter("sbtn");
+		String search=request.getParameter("srno");
+		
+		
+		if(sbtn==null || search.isEmpty() || sbtn.equals("Refresh") )
+		{
+			query="SELECT * FROM student ORDER BY rno";
+		}
+		else
+		{
+			try
+			{
+				int rno=Integer.parseInt(search);
+				query="SELECT * FROM student WHERE rno = ?";
+			}
+			catch(NumberFormatException ne)
+			{
+				query="SELECT * FROM student WHERE name LIKE ?";
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();		
+			}
+		}
+		
+		
 		try
 		{
 			Class.forName(DB_DRIVER);
 			con=DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			ps=con.prepareStatement(query);
-			rs=ps.executeQuery();
 			
+			if (query.contains("WHERE rno = ?")) 
+			{
+			    ps.setInt(1, Integer.parseInt(search));
+			   
+			}
+			else if(query.contains("WHERE name LIKE ?"))
+			{
+				ps.setString(1, "%" + search + "%");
+
+			}
+			
+			rs=ps.executeQuery();
 			/*
 			
 			
@@ -100,22 +138,22 @@ public class DisplayStudentServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		finally
-		{
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		finally {
+		    try {
+		        if (rs != null) {
+		            rs.close();  // Close the ResultSet if it was opened
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    try {
+		        if (con != null) {
+		            con.close();  // Close the Connection if it was opened
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
 		}
-		
 		
 	}
 
