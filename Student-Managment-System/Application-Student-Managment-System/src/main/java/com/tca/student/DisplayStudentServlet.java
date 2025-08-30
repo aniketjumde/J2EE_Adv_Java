@@ -71,10 +71,7 @@ public class DisplayStudentServlet extends HttpServlet {
 					query="SELECT * FROM student WHERE name LIKE ?";
 				}
 			}
-			catch(Exception e)
-			{
-				e.printStackTrace();		
-			}
+			
 		}
 		
 		
