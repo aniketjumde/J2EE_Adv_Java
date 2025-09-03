@@ -20,8 +20,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/display")
-public class DisplayStudentServlet extends HttpServlet {
+@WebServlet("/delete")
+public class DeleteStudentServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -29,7 +30,9 @@ public class DisplayStudentServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
-		
+		/* Purpose :
+		 * When First time made a request or click on 'Search/Refresh' Button show all student data 
+		 */
 		
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -43,12 +46,9 @@ public class DisplayStudentServlet extends HttpServlet {
 		String query="";
 		
 		String sbtn=request.getParameter("sbtn");
-		
-//		String search=request.getParameter("srno");
-		
+		String search=request.getParameter("srno");
 		
 		
-		/*
 		if(sbtn==null || search.isEmpty() || sbtn.equals("Refresh") )
 		{
 			query="SELECT * FROM student ORDER BY rno";
@@ -99,37 +99,6 @@ public class DisplayStudentServlet extends HttpServlet {
 
 			}
 			
-			
-			
-			
-			
-			
-			*/
-		
-		try {
-				// name, rno or per
-			String search=request.getParameter("srno");
-			Class.forName(DB_DRIVER);
-			con=DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
-			
-			if(search!=null && !search.isEmpty() )
-			{
-				query = "SELECT * FROM student WHERE name LIKE ? OR CAST(rno AS TEXT) LIKE ? OR CAST(per AS TEXT) LIKE ? ORDER BY rno";
-				
-				
-				ps=con.prepareStatement(query);
-				
-				
-				ps.setString(1, "%" + search + "%");
-				ps.setString(2, "%" + search + "%");
-				ps.setString(3, "%" + search + "%");
-			}
-			else {
-				query = "SELECT * FROM student ORDER BY rno";
-				ps=con.prepareStatement(query);
-
-			}
-			
 			rs=ps.executeQuery();
 			/*
 			
@@ -173,7 +142,7 @@ public class DisplayStudentServlet extends HttpServlet {
 			/* Redirecting the List of Student From View Layer */
 			
 			request.setAttribute("students", L);
-			RequestDispatcher requstDispatcher=request.getRequestDispatcher("DisplayStudent.jsp");
+			RequestDispatcher requstDispatcher=request.getRequestDispatcher("DeleteStudent.jsp");
 			requstDispatcher.forward(request,response);
 			
 			
@@ -199,6 +168,60 @@ public class DisplayStudentServlet extends HttpServlet {
 		}
 		
 	}
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		/*
+		 * Purpose:
+		 * Delete Student based on Roll number.
+		 * Rollnumber is sent from Java Script
+		 */
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		Connection con = null;
+		PreparedStatement ps= null;
+		
+		final String DB_URL = "jdbc:postgresql://localhost/ajdb20";
+		final String DB_USER= "root";
+		final String DB_PWD = "root@123";
+		final String DB_DRIVER="org.postgresql.Driver";
+		
+		String trno = request.getParameter("trno");
+		String qry  = "DELETE FROM student WHERE rno="+trno; 
+				
+		try
+		{
+			Class.forName(DB_DRIVER);
+			con = DriverManager.getConnection(DB_URL,DB_USER, DB_PWD);
+			ps =  con.prepareStatement(qry);
+			
+			ps.executeUpdate();
+			
+			out.println("Success");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			out.println("failed");
+		}
+		finally
+		{
+			try
+			{
+				con.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				out.println("failed");
+			}
+		}
+		
+	}
+	
 
 	
 
