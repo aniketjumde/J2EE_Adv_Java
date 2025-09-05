@@ -36,7 +36,7 @@
 <%
 	List<Student> L = (List<Student>) request.getAttribute("students");
 
-	if(L.isEmpty())
+	if(L==null || L.isEmpty())
 	{
 %>
 		<tr>
