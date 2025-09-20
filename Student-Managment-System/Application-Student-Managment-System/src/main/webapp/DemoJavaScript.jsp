@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 
-	function display()
+	/* function display()
 	{
 		alert("Welcom to TCA");
 	}
@@ -19,7 +19,7 @@
 		alert("Changing the heading...");
 		var h1=document.getElementById("ab");
 		h1.innerHTML="New Changed Text";
-	}
+	} */
 
 	
 </script>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Student</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     	
     function openUpdatePopup(trno)
@@ -62,12 +62,16 @@
     					{
     						if(data.trim() == 'Success')	
     						{
-    							alert("Record is Updated Succesfully !!");
-    							location.reload();
+    							document.querySelector('#updateModal  .btn-close').click();
+    							
+    							swal("Success!", "Record is Updated Succesfully !!", "success")
+								.then(()=>location.reload());
+    							
+    							
     						}
     						if(data.trim() == 'failed')	
     						{
-    							alert("Failed to Update Record !!");
+    							swal("Failed!", "Failed to Update Record !!", "error")
     						}
     					}
     		
@@ -108,7 +112,7 @@
 <%
 	List<Student> L = (List<Student>) request.getAttribute("students");
 	
-	if(L.isEmpty())
+	if(L==null || L.isEmpty())
 	{
 %>
 		<tr>
